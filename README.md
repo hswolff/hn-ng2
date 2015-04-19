@@ -2,6 +2,14 @@
 
 Hacker News made with [Angular 2](https://angular.io/).
 
+I created this to see what it's like to create an AngularJS 2.0 application. I've previously experimented creating a [Hacker News clone with AngularJS 1](https://github.com/hswolff/hn-ng) so this was fun to play with.
+
+Uses:
+- [angularjs2](https://angular.io/)
+- [webpack](http://webpack.github.io/)
+- [babeljs](http://babeljs.io/)
+
+Made possible thanks to [shuhei](https://github.com/shuhei)'s work getting [AngularJS 2 to work with webpack and babeljs.](https://github.com/shuhei/babel-angular2-app) Thank you!
 
 ## Todo
 
