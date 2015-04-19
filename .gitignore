@@ -1,7 +1,0 @@
-node_modules
-dist
-bower_components
-test/bower_components
-npm-debug.log
-.tmp
-.babel-cache
