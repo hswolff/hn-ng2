@@ -35,6 +35,7 @@
     "gulp": "^3.8.11",
     "gulp-eslint": "^0.9.0",
     "gulp-filter": "^2.0.2",
+    "gulp-gh-pages": "^0.5.1",
     "gulp-if": "^1.2.5",
     "gulp-load-plugins": "^0.10.0",
     "gulp-size": "^1.2.1",
