@@ -1,5 +1,6 @@
 import { Component, View, For } from 'angular2/angular2';
 import { HNApi } from '../../services/hn-api';
+import { HNItem } from '../../components/hn-item';
 
 @Component({
   selector: 'homepage',
@@ -7,26 +8,17 @@ import { HNApi } from '../../services/hn-api';
 })
 @View({
   directives: [
-    For
+    For,
+    HNItem
   ],
-  template: `
-    <h1>Hacker News in Angular2</h1>
-
-    <ul>
-      <li *for="#item of topStories">
-        {{item.title}}
-      </li>
-    </ul>
-  `
+  template: require('./template.html')
 })
 export class Homepage {
   topStories: Array;
 
   constructor(hnApi: HNApi) {
     hnApi.fetchTopStories().then(() => {
-      this.topStories = hnApi.topStories.map(itemId => {
-        return hnApi.itemStore[itemId];
-      });
+      this.topStories = hnApi.topStories;
     });
   }
 }

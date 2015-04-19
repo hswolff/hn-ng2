@@ -6,14 +6,16 @@ window.zone = window.Zone = zone;
 require('./main.less');
 
 import { Component, View, bootstrap } from 'angular2/angular2';
-import { Homepage } from './components/homepage'
+import { Homepage } from './pages/home'
 
 @Component({
   selector: 'hacker-news'
 })
 @View({
   template: `
-    <homepage />
+    ${require('./header-bar.html')}
+    <homepage></homepage>
+    ${require('./footer-bar.html')}
   `,
   directives: [
     Homepage

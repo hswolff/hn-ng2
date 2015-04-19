@@ -1,0 +1,22 @@
+<div class="hnItem-loading spinner" *if="!data">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+
+<div class="hnItem-container" *if="data">
+  <div class="hnItem--story">
+    <header>
+      <a class="hnItem-title" [href]="data.url">{{data.title}}</a>
+      <span class="comhead" [hidden]="!data.url">({{domainPipe(data.url)}})</span>
+    </header>
+    <section [hidden]="!data">
+      <span>{{data.score}} points</span> by
+      <a [href]="urlForUser(data.by)">{{data.by}}</a>
+      <span>{{timeFrom(data.time)}}</span> |
+      <a [href]="urlForItem(data.id)">comments</a>
+    </section>
+  </div>
+</div>

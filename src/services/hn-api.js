@@ -6,30 +6,44 @@ export class HNApi {
   itemStore: Object;
   topStories: Array;
 
+  constructor() {
+    this.itemStore = {};
+  }
+
   fetchTopStories() {
     return new Promise((resolve) => {
-      let promises = [];
-
       this.topStoriesRef().once('value', snapshot => {
         this.topStories = snapshot.val().splice(0, 10);
 
-        this.itemStore = this.topStories.reduce((itemStore, itemId) => {
-          promises.push(new Promise((resolveItem) => {
-            this.itemRef(itemId).on('value', value => {
-              itemStore[itemId] = value.val();
-
-              resolveItem();
-            });
-          }));
-
-
-          return itemStore;
-        }, {});
-
-        Promise.all(promises).then(resolve);
+        resolve(this.topStories);
       });
     });
+  }
 
+  fetchItems(items = []) {
+    return new Promise(resolve => {
+      let promises = [];
+
+      items.forEach(itemId => {
+        promises.push(new Promise((resolveItem) => {
+          this.itemRef(itemId).on('value', value => {
+            this.itemStore[itemId] = value.val();
+
+            resolveItem(this.itemStore[itemId]);
+          });
+        }));
+      });
+
+      Promise.all(promises).then(resolve);
+    });
+  }
+
+  fetchItem(item) {
+    if (!item) {
+      return Promise.reject();
+    }
+
+    return this.fetchItems([item]).then(data => data[0]);
   }
 
   topStoriesRef() {

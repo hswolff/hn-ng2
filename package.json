@@ -14,6 +14,7 @@
     "angular2": "2.0.0-alpha.19",
     "babel-angular2-app": "shuhei/babel-angular2-app#9937509706fa03ccbd3d221114c67ebbb38369fb",
     "firebase": "^2.2.4",
+    "moment": "^2.10.2",
     "rtts_assert": "2.0.0-alpha.19",
     "zone.js": "angular/zone.js#5d6bee4b47d82a8cf1cde76ce19b70350a67ff10"
   },
@@ -39,6 +40,7 @@
     "gulp-size": "^1.2.1",
     "gulp-useref": "^1.1.2",
     "gulp-util": "^3.0.4",
+    "html-loader": "^0.2.3",
     "http-server": "^0.8.0",
     "less": "^2.5.0",
     "less-loader": "^2.2.0",
