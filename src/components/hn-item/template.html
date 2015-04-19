@@ -7,16 +7,64 @@
 </div>
 
 <div class="hnItem-container" *if="data">
-  <div class="hnItem--story">
-    <header>
-      <a class="hnItem-title" [href]="data.url">{{data.title}}</a>
-      <span class="comhead" [hidden]="!data.url">({{domainPipe(data.url)}})</span>
-    </header>
-    <section [hidden]="!data">
-      <span>{{data.score}} points</span> by
-      <a [href]="urlForUser(data.by)">{{data.by}}</a>
-      <span>{{timeFrom(data.time)}}</span> |
-      <a [href]="urlForItem(data.id)">comments</a>
-    </section>
+  <div [switch]="data.type">
+    <template [switch-when]="'comment'">
+      <div class="hnItem--comment">
+        <header>
+          <span class="u-pointer" (click)="collapsed = !collapsed" *if="!topLevel">
+            [{{collapsed ? '+' : '-'}}]
+          </span>
+          <a [href]="urlForUser(data.by)" class="hnItem-author">{{data.by}}</a>
+          <span>{{timeAgo(data.time)}}</span> |
+          <a [href]="urlForItem(data.id)">link</a>
+        </header>
+        <section class="hnItem--coment-content" [hidden]="!data || collapsed">{{data.text}}</section>
+        <div class="hnItem--comment-children" *if="loadChildren && data.kids" [hidden]="collapsed">
+          <div *for="#kidId of data.kids">
+            child id: {{kidId}}
+            <hn-item item-id="{{kidId}}"></hn-item>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template [switch-when]="'job'">
+      <div class="hnItem--story">
+        <header>
+          <a class="hnItem-title" [href]="data.url">{{data.title}}</a>
+          <span class="comhead" [hidden]="!data.url">({{domainPipe(data.url)}})</span>
+        </header>
+        <section [hidden]="!data">
+          <span>{{timeAgo(data.time)}}</span>
+        </section>
+      </div>
+    </template>
+    <template [switch-when]="'poll'">
+      <div class="hnItem--story">
+        <header>
+          <a class="hnItem-title" [href]="data.url">{{data.title}}</a>
+          <span class="comhead" [hidden]="!data.url">({{domainPipe(data.url)}})</span>
+        </header>
+        <section [hidden]="!data">
+          <span>{{data.score}} points</span> by
+          <a [href]="urlForUser(data.by)">{{data.by}}</a>
+          <span>{{timeAgo(data.time)}}</span> |
+          <a [href]="urlForItem(data.id)">comments</a>
+        </section>
+      </div>
+    </template>
+    <template [switch-default]>
+      <div class="hnItem--story">
+        <header>
+          <a class="hnItem-title" [href]="data.url">{{data.title}}</a>
+          <span class="comhead" [hidden]="!data.url">({{domainPipe(data.url)}})</span>
+        </header>
+        <section [hidden]="!data">
+          <span>{{data.score}} points</span> by
+          <a [href]="urlForUser(data.by)">{{data.by}}</a>
+          <span>{{timeAgo(data.time)}}</span> |
+          <a [href]="urlForItem(data.id)">comments</a>
+        </section>
+      </div>
+    </template>
   </div>
 </div>

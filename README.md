@@ -5,10 +5,22 @@ Hacker News made with [Angular 2](https://angular.io/).
 
 ## Todo
 
+- [ ] Actually use Firebase's life updating and propogate those changes in the UI.
 - [ ] Dynamically load templates to achieve. Desire is to be able to do this:
   `<div ng-include="'/components/hn-item/hn-item--' + (data.type || 'story') + '.html'" />`
 - [ ] Pre-warm the template cache for production builds.
 - [ ] Create and register new pipes (filters) for components.
+- [ ] User angular-router 2 when it's available.
+- [ ] The angular2 equivalent for `ng-bind-html`
+- [ ] How to create same `@Component` `properties` keys and values. So that I can have:
+   ```javascript
+   @Component({
+     properties: {
+       itemId: 'itemId',
+     }
+   })
+   ```
+- [ ] Implement recursive `<hn-items />` so we can render comment trees.
 
 
 ## Develop
