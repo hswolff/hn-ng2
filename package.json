@@ -1,0 +1,50 @@
+{
+  "name": "hn-ng2",
+  "description": "Hacker News site made with Angular2",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hswolff/hn-ng2.git"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {},
+  "dependencies": {
+    "angular2": "2.0.0-alpha.19",
+    "babel-angular2-app": "shuhei/babel-angular2-app#9937509706fa03ccbd3d221114c67ebbb38369fb",
+    "firebase": "^2.2.4",
+    "rtts_assert": "2.0.0-alpha.19",
+    "zone.js": "angular/zone.js#5d6bee4b47d82a8cf1cde76ce19b70350a67ff10"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^1.2.0",
+    "babel-core": "^5.1.10",
+    "babel-eslint": "^3.0.1",
+    "babel-loader": "^5.0.0",
+    "babel-plugin-angular2-at-annotation": "^0.1.0",
+    "babel-plugin-angular2-type-annotation": "^0.1.0",
+    "css-loader": "^0.10.1",
+    "del": "^1.1.1",
+    "eslint": "^0.19.0",
+    "eslint-loader": "^0.10.0",
+    "eslint-plugin-react": "^2.1.1",
+    "extract-text-webpack-plugin": "^0.5.0",
+    "file-loader": "^0.8.1",
+    "gulp": "^3.8.11",
+    "gulp-eslint": "^0.9.0",
+    "gulp-filter": "^2.0.2",
+    "gulp-if": "^1.2.5",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-size": "^1.2.1",
+    "gulp-useref": "^1.1.2",
+    "gulp-util": "^3.0.4",
+    "http-server": "^0.8.0",
+    "less": "^2.5.0",
+    "less-loader": "^2.2.0",
+    "style-loader": "^0.10.2",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.8.5",
+    "webpack-dev-server": "^1.8.0"
+  }
+}
