@@ -20,7 +20,7 @@ gulp.task('html', function() {
     .pipe($.size());
 });
 
-gulp.task('clean', require('del').bind(null, ['dist']));
+gulp.task('clean', require('del').bind(null, ['dist', '.publish']));
 
 gulp.task('server', function(cb) {
   var httpServer = require('http-server');

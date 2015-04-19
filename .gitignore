@@ -5,3 +5,4 @@ test/bower_components
 npm-debug.log
 .tmp
 .babel-cache
+.publish
