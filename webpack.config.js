@@ -101,7 +101,7 @@ module.exports = function(production) {
         },
         {
           test: /\.html/,
-          loader: 'html-loader?attrs=img:data-src'
+          loader: 'raw-loader'
         }
       ]
     }
