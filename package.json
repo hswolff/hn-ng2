@@ -11,11 +11,11 @@
   },
   "scripts": {},
   "dependencies": {
-    "angular2": "2.0.0-alpha.19",
+    "angular2": "2.0.0-alpha.20",
     "babel-angular2-app": "shuhei/babel-angular2-app#9937509706fa03ccbd3d221114c67ebbb38369fb",
     "firebase": "^2.2.4",
     "moment": "^2.10.2",
-    "rtts_assert": "2.0.0-alpha.19",
+    "rtts_assert": "2.0.0-alpha.20",
     "zone.js": "angular/zone.js#5d6bee4b47d82a8cf1cde76ce19b70350a67ff10"
   },
   "devDependencies": {
