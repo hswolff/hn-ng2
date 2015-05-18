@@ -22,10 +22,10 @@ module.exports = function(production) {
     cacheDirectory: babelCachePath,
     optional: ['es7.decorators'],
     plugins: [
+      'babel-angular2-app/transformers/delete-es-module',
       'babel-angular2-app/transformers/disable-define',
-      'angular2-type-annotation',
-      'babel-angular2-app/transformers/angular2-type-assertion',
-      'angular2-at-annotation'
+      'angular2-annotations',
+      'type-assertion'
     ]
   };
 

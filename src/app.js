@@ -1,4 +1,5 @@
 import 'babel-core/polyfill';
+import 'reflect-metadata';
 // Need to assign zone to window object for now until bugs are worked out.
 import { zone } from 'zone.js';
 window.zone = window.Zone = zone;

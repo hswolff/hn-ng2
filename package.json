@@ -11,20 +11,21 @@
   },
   "scripts": {},
   "dependencies": {
-    "angular2": "2.0.0-alpha.20",
-    "babel-angular2-app": "shuhei/babel-angular2-app#9937509706fa03ccbd3d221114c67ebbb38369fb",
+    "angular2": "2.0.0-alpha.23",
+    "babel-angular2-app": "shuhei/babel-angular2-app#7161c3523d3322979f5dec0b6a54bdf5ce7133e6",
     "firebase": "^2.2.4",
     "moment": "^2.10.2",
-    "rtts_assert": "2.0.0-alpha.20",
-    "zone.js": "angular/zone.js#5d6bee4b47d82a8cf1cde76ce19b70350a67ff10"
+    "reflect-metadata": "^0.1.0",
+    "rtts_assert": "2.0.0-alpha.23",
+    "zone.js": "^0.5.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "^1.2.0",
-    "babel-core": "^5.1.10",
+    "babel-core": "^5.3.1",
     "babel-eslint": "^3.0.1",
     "babel-loader": "^5.0.0",
-    "babel-plugin-angular2-at-annotation": "^0.1.0",
-    "babel-plugin-angular2-type-annotation": "^0.1.0",
+    "babel-plugin-angular2-annotations": "^1.0.2",
+    "babel-plugin-type-assertion": "^0.1.2",
     "css-loader": "^0.10.1",
     "del": "^1.1.1",
     "eslint": "^0.19.0",
@@ -47,7 +48,7 @@
     "raw-loader": "^0.5.1",
     "style-loader": "^0.10.2",
     "url-loader": "^0.5.5",
-    "webpack": "^1.8.5",
+    "webpack": "^1.9.5",
     "webpack-dev-server": "^1.8.0"
   }
 }
