@@ -1,8 +1,8 @@
 require('./styles.less');
 
 import { Component } from 'angular2/core';
+import { RouteParams } from 'angular2/router';
 import { HNApi } from '../../services/hn-api';
-import { router } from '../../services/router';
 import { timeAgo } from '../../services/time';
 import { HNItem } from '../../components/hn-item';
 
@@ -15,8 +15,8 @@ import { HNItem } from '../../components/hn-item';
   template: require('./template.html')
 })
 export class UserPage {
-  constructor(hnApi: HNApi) {
-    hnApi.fetchUser(router.userId).then(data => {
+  constructor(hnApi: HNApi, routeParams: RouteParams) {
+    hnApi.fetchUser(routeParams.get('id')).then(data => {
       this.data = data;
       this.data.submitted = this.data.submitted.splice(0, 30);
     });

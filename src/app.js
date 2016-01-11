@@ -11,8 +11,11 @@ import 'angular2/router';
 import {bootstrap} from 'angular2/platform/browser';
 import {
   enableProdMode,
+  provide,
   Component
 } from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 
 if (__DEV__ === false) {
   enableProdMode();
@@ -20,7 +23,6 @@ if (__DEV__ === false) {
 
 require('./main.less');
 
-import { router } from './services/router';
 import { HNApi } from './services/hn-api';
 
 import { HomePage } from './pages/home';
@@ -31,19 +33,25 @@ import { UserPage } from './pages/user';
   selector: 'hacker-news',
   template: `
     ${require('./header-bar.html')}
-    ${router.itemId ? '<page-item></page-item>' : ''}
-    ${router.userId ? '<page-user></page-user>' : ''}
-    ${!(router.itemId || router.userId) ? '<page-home></page-home>' : ''}
+    <router-outlet></router-outlet>
     ${require('./footer-bar.html')}
   `,
   directives: [
+    ROUTER_DIRECTIVES,
     HomePage,
     ItemPage,
     UserPage
   ]
 })
+@RouteConfig([
+  { path: '/', component: HomePage, as: 'Home' },
+  { path: '/item/:id', component: ItemPage, as: 'Item' },
+  { path: '/user/:id', component: UserPage, as: 'User' }
+])
 class HackerNewsApp {}
 
 bootstrap(HackerNewsApp, [
-  HNApi
+  HNApi,
+  ROUTER_PROVIDERS,
+  provide(LocationStrategy, { useClass: HashLocationStrategy })
 ]);

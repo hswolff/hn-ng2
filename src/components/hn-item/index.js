@@ -1,8 +1,8 @@
 require('./styles.less');
 
 import { Component } from 'angular2/core';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 import { HNApi } from '../../services/hn-api';
-import { router } from '../../services/router';
 import { timeAgo } from '../../services/time';
 import { DomainPipe } from './domain.pipe';
 
@@ -14,7 +14,10 @@ import { DomainPipe } from './domain.pipe';
     'loadChildren',
     'topLevel'
   ],
-  template: require('./template.html')
+  template: require('./template.html'),
+  directives: [
+    ROUTER_DIRECTIVES
+  ]
 })
 export class HNItem {
   constructor(hnApiInstance: HNApi) {
@@ -25,9 +28,6 @@ export class HNItem {
 
     // Make accessible in other methods.
     this._hnApiInstance = hnApiInstance;
-
-    this.urlForUser = router.urlForUser;
-    this.urlForItem = router.urlForItem;
 
     this.timeAgo = timeAgo;
   }

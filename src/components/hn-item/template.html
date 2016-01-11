@@ -14,9 +14,9 @@
           <span class="u-pointer" (click)="collapsed = !collapsed" *ngIf="!topLevel">
             [{{collapsed ? '+' : '-'}}]
           </span>
-          <a [href]="urlForUser(data.by)" class="hnItem-author">{{data.by}}</a>
+          <a [routerLink]="['User', {id: data.by}]" class="hnItem-author">{{data.by}}</a>
           <span>{{timeAgo(data.time)}}</span> |
-          <a [href]="urlForItem(data.id)">link</a>
+          <a [routerLink]="['Item', {id: data.id}]">link</a>
         </header>
         <section class="hnItem--coment-content" [hidden]="!data || collapsed">{{data.text}}</section>
         <div class="hnItem--comment-children" *ngIf="loadChildren && data.kids" [hidden]="collapsed">
@@ -46,9 +46,9 @@
         </header>
         <section [hidden]="!data">
           <span>{{data.score}} points</span> by
-          <a [href]="urlForUser(data.by)">{{data.by}}</a>
+          <a [routerLink]="['User', {id: data.by}]">{{data.by}}</a>
           <span>{{timeAgo(data.time)}}</span> |
-          <a [href]="urlForItem(data.id)">comments</a>
+          <a [routerLink]="['Item', {id: data.id}]">comments</a>
         </section>
       </div>
     </template>
@@ -60,9 +60,9 @@
         </header>
         <section [hidden]="!data">
           <span>{{data.score}} points</span> by
-          <a [href]="urlForUser(data.by)">{{data.by}}</a>
+          <a [routerLink]="['User', {id: data.by}]">{{data.by}}</a>
           <span>{{timeAgo(data.time)}}</span> |
-          <a [href]="urlForItem(data.id)">comments</a>
+          <a [routerLink]="['Item', {id: data.id}]">comments</a>
         </section>
       </div>
     </template>
