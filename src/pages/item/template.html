@@ -1,7 +1,7 @@
 <div class="itemDetail">
-  <hn-item [item-id]="itemId" top-level="true"></hn-item>
+  <hn-item [itemId]="itemId" [topLevel]="true"></hn-item>
 
-  <div class="itemDetail-item" *for="#childId of childrenIds">
-    <hn-item [item-id]="childId"></hn-item>
+  <div class="itemDetail-item" *ngFor="#childId of childrenIds">
+    <hn-item [itemId]="childId"></hn-item>
   </div>
 </div>

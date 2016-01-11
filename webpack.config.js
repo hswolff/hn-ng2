@@ -18,17 +18,6 @@ module.exports = function(production) {
     fs.mkdirSync(babelCachePath);
   }
 
-  var babelOptions = {
-    cacheDirectory: babelCachePath,
-    optional: ['es7.decorators'],
-    plugins: [
-      'babel-angular2-app/transformers/delete-es-module',
-      'babel-angular2-app/transformers/disable-define',
-      'angular2-annotations',
-      'type-assertion'
-    ]
-  };
-
   var config = {
     entry: {
       app: [
@@ -46,18 +35,12 @@ module.exports = function(production) {
     devtool: false,
 
     plugins: [
-      new webpack.ResolverPlugin(
-        new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-      )
     ],
 
     resolve: {
-      extensions: ['', '.webpack.js', '.web.js', '.js', '.es6'],
-      root: [path.join(__dirname, 'bower_components')],
+      extensions: ['', '.js', '.json'],
+      root: __dirname,
       alias: {
-        // TODO: Use angular2 bundle.js.
-        'angular2': 'angular2/es6/dev',
-        'rtts_assert': 'rtts_assert/es6'
       }
     },
 
@@ -75,13 +58,19 @@ module.exports = function(production) {
 
       loaders: [
         {
-          test: /\.es6$/,
-          loader: 'babel?' + JSON.stringify(babelOptions)
-        },
-        {
           test: /\.js$/,
-          exclude: /node_modules|bower_components/,
-          loader: 'babel?' + JSON.stringify(babelOptions)
+          loader: 'babel',
+          exclude: /node_modules/,
+          query: {
+            cacheDirectory: babelCachePath,
+            presets: ['es2015'],
+            plugins: [
+              'angular2-annotations',
+              'transform-decorators-legacy',
+              'transform-class-properties',
+              'transform-flow-strip-types'
+            ]
+          }
         },
         {
           test: /\.gif/,
@@ -102,6 +91,7 @@ module.exports = function(production) {
         {
           test: /\.html/,
           loader: 'raw-loader'
+          // loader: 'html?minimize=false'
         }
       ]
     }
@@ -150,7 +140,11 @@ module.exports = function(production) {
         '__DEV__': false
       }),
       new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+        minimize: true,
+        mangle: false,
+        comments: false
+      }),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.AggressiveMergingPlugin(),
       new ExtractTextPlugin('main.css', {

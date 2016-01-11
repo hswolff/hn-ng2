@@ -5,10 +5,15 @@
     "browser": true,
     "node": true
   },
+  "globals": {
+    "__DEV__": false
+  },
   "ecmaFeatures": {
     "modules": true
   },
   "rules": {
+    "new-cap": 0,
+    "no-underscore-dangle": 0,
     "quotes": [1, "single"],
     "strict": [2, "global"],
     "no-debugger": 2,

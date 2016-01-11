@@ -1,22 +1,34 @@
-import 'babel-core/polyfill';
+// vendor: start
+import 'es6-shim';
 import 'reflect-metadata';
-// Need to assign zone to window object for now until bugs are worked out.
-import { zone } from 'zone.js';
-window.zone = window.Zone = zone;
+import 'zone.js/lib/browser/zone-microtask';
+
+import 'angular2/core';
+import 'angular2/platform/browser';
+import 'angular2/router';
+// vendor: end
+
+import {bootstrap} from 'angular2/platform/browser';
+import {
+  enableProdMode,
+  Component
+} from 'angular2/core';
+
+if (__DEV__ === false) {
+  enableProdMode();
+}
 
 require('./main.less');
 
-import { Component, View, bootstrap } from 'angular2/angular2';
-import { router } from './services/router'
-import { HomePage } from './pages/home'
-import { ItemPage } from './pages/item'
-import { UserPage } from './pages/user'
+import { router } from './services/router';
+import { HNApi } from './services/hn-api';
 
+import { HomePage } from './pages/home';
+import { ItemPage } from './pages/item';
+import { UserPage } from './pages/user';
 
 @Component({
-  selector: 'hacker-news'
-})
-@View({
+  selector: 'hacker-news',
   template: `
     ${require('./header-bar.html')}
     ${router.itemId ? '<page-item></page-item>' : ''}
@@ -32,4 +44,6 @@ import { UserPage } from './pages/user'
 })
 class HackerNewsApp {}
 
-bootstrap(HackerNewsApp);
+bootstrap(HackerNewsApp, [
+  HNApi
+]);

@@ -1,35 +1,22 @@
 require('./styles.less');
 
-import { Component, View, For, If, Switch, SwitchWhen, SwitchDefault } from 'angular2/angular2';
+import { Component } from 'angular2/core';
 import { HNApi } from '../../services/hn-api';
 import { router } from '../../services/router';
 import { timeAgo } from '../../services/time';
 import { DomainPipe } from './domain.pipe';
 
-var hnApi;
-
 @Component({
   selector: 'hn-item',
   injectables: [HNApi],
-  properties: {
-    newItemId: 'itemId',
-    newLoadChildren: 'loadChildren',
-    newTopLevel: 'topLevel'
-  }
-})
-@View({
-  template: require('./template.html'),
-  directives: [
-    For,
-    If,
-    Switch,
-    SwitchWhen,
-    SwitchDefault
-  ]
+  properties: [
+    'itemId',
+    'loadChildren',
+    'topLevel'
+  ],
+  template: require('./template.html')
 })
 export class HNItem {
-  data: Object;
-
   constructor(hnApiInstance: HNApi) {
     this.domainPipe = DomainPipe.transform;
 
@@ -37,7 +24,7 @@ export class HNItem {
     this.loadChildren = true;
 
     // Make accessible in other methods.
-    hnApi = hnApiInstance;
+    this._hnApiInstance = hnApiInstance;
 
     this.urlForUser = router.urlForUser;
     this.urlForItem = router.urlForItem;
@@ -45,21 +32,17 @@ export class HNItem {
     this.timeAgo = timeAgo;
   }
 
-  set newItemId(itemId) {
-    this.itemId = itemId;
+  get itemId() {
+    return this._itemId;
+  }
+
+  set itemId(itemId) {
+    this._itemId = itemId;
     this.fetchData();
   }
 
-  set newLoadChildren(loadChildren) {
-    this.loadChildren = loadChildren === 'true';
-  }
-
-  set newTopLevel(topLevel) {
-    this.topLevel = topLevel === 'true';
-  }
-
   fetchData() {
-    hnApi.fetchItem(this.itemId).then(data => {
+    this._hnApiInstance.fetchItem(this.itemId).then(data => {
       this.data = data;
     });
   }

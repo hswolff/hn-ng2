@@ -1,17 +1,17 @@
-<div class="userDetail" *if="data">
+<div class="userDetail" *ngIf="data">
   <p>user: {{data.id}}</p>
   <p>created: <span>{{timeAgo(data.created)}}</span></p>
   <p>karma:  {{data.karma}}</p>
   <p>about:  <span>{{data.about}}</span></p>
 
-  <p>
+  <div>
     <a class="u-pointer"><u (click)="showSubmissions = !showSubmissions">show submitted stories and comments</u></a>
-    <div *if="showSubmissions">
-      <div class="itemDetail-item" *for="#itemId of data.submitted">
-        <hn-item item-id="{{itemId}}" load-children="false"></hn-item>
+    <div *ngIf="showSubmissions">
+      <div class="itemDetail-item" *ngFor="#itemId of data.submitted">
+        <hn-item [itemId]="itemId" [loadChildren]="false"></hn-item>
       </div>
     </div>
-  </p>
+  </div>
 
   <p>
     <a [href]="'https://news.ycombinator.com/submitted?id=' + data.id"><u>submissions</u></a>

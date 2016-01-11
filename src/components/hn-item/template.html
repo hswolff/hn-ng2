@@ -1,4 +1,4 @@
-<div class="hnItem-loading spinner" *if="!data">
+<div class="hnItem-loading spinner" *ngIf="!data">
   <div class="rect1"></div>
   <div class="rect2"></div>
   <div class="rect3"></div>
@@ -6,12 +6,12 @@
   <div class="rect5"></div>
 </div>
 
-<div class="hnItem-container" *if="data">
-  <div [switch]="data.type">
-    <template [switch-when]="'comment'">
+<div class="hnItem-container" *ngIf="data">
+  <div [ngSwitch]="data.type">
+    <template [ngSwitchWhen]="'comment'">
       <div class="hnItem--comment">
         <header>
-          <span class="u-pointer" (click)="collapsed = !collapsed" *if="!topLevel">
+          <span class="u-pointer" (click)="collapsed = !collapsed" *ngIf="!topLevel">
             [{{collapsed ? '+' : '-'}}]
           </span>
           <a [href]="urlForUser(data.by)" class="hnItem-author">{{data.by}}</a>
@@ -19,15 +19,15 @@
           <a [href]="urlForItem(data.id)">link</a>
         </header>
         <section class="hnItem--coment-content" [hidden]="!data || collapsed">{{data.text}}</section>
-        <div class="hnItem--comment-children" *if="loadChildren && data.kids" [hidden]="collapsed">
-          <div *for="#kidId of data.kids">
+        <div class="hnItem--comment-children" *ngIf="loadChildren && data.kids" [hidden]="collapsed">
+          <div *ngFor="#kidId of data.kids">
             child id: {{kidId}}
             <hn-item item-id="{{kidId}}"></hn-item>
           </div>
         </div>
       </div>
     </template>
-    <template [switch-when]="'job'">
+    <template [ngSwitchWhen]="'job'">
       <div class="hnItem--story">
         <header>
           <a class="hnItem-title" [href]="data.url">{{data.title}}</a>
@@ -38,7 +38,7 @@
         </section>
       </div>
     </template>
-    <template [switch-when]="'poll'">
+    <template [ngSwitchWhen]="'poll'">
       <div class="hnItem--story">
         <header>
           <a class="hnItem-title" [href]="data.url">{{data.title}}</a>
@@ -52,7 +52,7 @@
         </section>
       </div>
     </template>
-    <template [switch-default]>
+    <template ngSwitchDefault>
       <div class="hnItem--story">
         <header>
           <a class="hnItem-title" [href]="data.url">{{data.title}}</a>
