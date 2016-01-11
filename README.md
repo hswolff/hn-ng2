@@ -11,16 +11,18 @@ Uses:
 
 Made possible thanks to [shuhei](https://github.com/shuhei)'s work getting [AngularJS 2 to work with webpack and babeljs.](https://github.com/shuhei/babel-angular2-app) Thank you!
 
+Also a lot of inspiration and example API usages taken from blacksonic's  [angular2-es6-todomvc](https://github.com/blacksonic/angular2-es6-todomvc) and [angular2-es6-starter](https://github.com/blacksonic/angular2-es6-starter).
+
 ## Todo
 
 - [ ] Actually use Firebase's life updating and propogate those changes in the UI.
-- [ ] Dynamically load templates to achieve. Desire is to be able to do this:
+- [x] Dynamically load templates to achieve. Desire is to be able to do this:
   `<div ng-include="'/components/hn-item/hn-item--' + (data.type || 'story') + '.html'" />`
 - [ ] Pre-warm the template cache for production builds.
 - [ ] Create and register new pipes (filters) for components.
-- [ ] User angular-router 2 when it's available.
+- [x] User angular-router 2 when it's available.
 - [ ] The angular2 equivalent for `ng-bind-html`
-- [ ] How to create same `@Component` `properties` keys and values. So that I can have:
+- [x] How to create same `@Component` `properties` keys and values. So that I can have:
    ```javascript
    @Component({
      properties: {
@@ -28,7 +30,7 @@ Made possible thanks to [shuhei](https://github.com/shuhei)'s work getting [Angu
      }
    })
    ```
-- [ ] Implement recursive `<hn-items />` so we can render comment trees.
+- [x] Implement recursive `<hn-items />` so we can render comment trees.
 
 
 ## Develop
